@@ -1,11 +1,11 @@
-name = "rotate"
+name = "telcomid"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
 
 [[kv_namespaces]]
 binding = "SIREN"
-id = "7e2cd53d1aa14b929a2091e5c3157348"
+id = "633d1d0e25ec434fb81035345127c2f6"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "a7d5327b-61ae-469d-bd6a-3ea2e906a247"
+UUID = "c225e737-5305-4d0b-aea3-b09d138fd7b3"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"
