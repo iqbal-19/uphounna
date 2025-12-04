@@ -81,19 +81,19 @@ async fn tunnel(req: Request, mut cx: RouteContext<Config>) -> Result<Response> 
     match proxyip_lower.as_str() {
         "vmess" => {
             protocol = "vmess".to_string();
-            proxyip = "AM".to_string(); // map vmess -> use KV key "ID"
+            proxyip = "AE".to_string(); // map vmess -> use KV key "ID"
         }
         "vless" => {
             protocol = "vless".to_string();
-            proxyip = "AM".to_string(); // map vless -> use KV key "ID"
+            proxyip = "AE".to_string(); // map vless -> use KV key "ID"
         }
         "trojan" => {
             protocol = "trojan".to_string();
-            proxyip = "AM".to_string(); // map trojan -> use KV key "ID"
+            proxyip = "AE".to_string(); // map trojan -> use KV key "ID"
         }
         "shadowsocks" => {
             protocol = "shadowsocks".to_string();
-            proxyip = "AM".to_string();
+            proxyip = "AE".to_string();
         }
         _ => {
             // jika bukan alias, tetap gunakan apa yang diberikan di path
