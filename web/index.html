@@ -40,16 +40,12 @@
       opacity: 0.25;
       mix-blend-mode: screen;
       animation: floatBg 20s infinite alternate ease-in-out;
-      z-index: -3;
+      z-index: -4;
     }
 
     @keyframes floatBg {
-      0% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      100% {
-        transform: translate3d(0, -30px, 0) scale(1.05);
-      }
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(0, -30px, 0) scale(1.05); }
     }
 
     .bg-gradient-overlay {
@@ -57,10 +53,32 @@
       inset: 0;
       background: radial-gradient(ellipse at top, rgba(255,255,255,0.06), transparent 60%),
                   linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,1));
+      z-index: -3;
+    }
+
+    /* Star layer – kelip kecil */
+    .star-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(1.8px 1.8px at 10% 20%, rgba(255,255,255,0.7) 50%, transparent 51%),
+        radial-gradient(1.6px 1.6px at 80% 10%, rgba(255,255,255,0.6) 50%, transparent 51%),
+        radial-gradient(1.6px 1.6px at 30% 80%, rgba(255,255,255,0.65) 50%, transparent 51%),
+        radial-gradient(1.4px 1.4px at 65% 60%, rgba(255,255,255,0.55) 50%, transparent 51%);
+      background-repeat: no-repeat;
+      animation: twinkle 3.5s ease-in-out infinite alternate;
+      opacity: 0.7;
       z-index: -2;
     }
 
-    /* Snow layer – flakes lebih besar & lebih banyak */
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: translateY(0); }
+      50% { opacity: 0.9; transform: translateY(1px); }
+      100% { opacity: 0.4; transform: translateY(-1px); }
+    }
+
+    /* Snow layer – flakes besar & banyak */
     .snow-layer,
     .snow-layer::before,
     .snow-layer::after {
@@ -103,12 +121,8 @@
     }
 
     @keyframes snow {
-      0% {
-        transform: translate3d(0, -40px, 0);
-      }
-      100% {
-        transform: translate3d(-40px, 100vh, 0);
-      }
+      0% { transform: translate3d(0, -40px, 0); }
+      100% { transform: translate3d(-40px, 100vh, 0); }
     }
 
     .wrapper {
@@ -124,14 +138,8 @@
     }
 
     @keyframes fadeDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(-20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .badge {
@@ -160,18 +168,9 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(0,230,118,0.8);
-      }
-      70% {
-        transform: scale(1.4);
-        box-shadow: 0 0 0 10px rgba(0,230,118,0);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(0,230,118,0);
-      }
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,230,118,0.8); }
+      70% { transform: scale(1.4); box-shadow: 0 0 0 10px rgba(0,230,118,0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,230,118,0); }
     }
 
     h1 {
@@ -179,11 +178,19 @@
       margin-bottom: 6px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      background: linear-gradient(120deg, #fff, #ffe082, #ff80ab, #80d8ff);
+      background: linear-gradient(120deg, #fff, #ffe082, #ff80ab, #80d8ff, #fff);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
       text-shadow: 0 0 20px rgba(0,0,0,0.4);
+      background-size: 250% 250%;
+      animation: titleGradientMove 10s ease-in-out infinite;
+    }
+
+    @keyframes titleGradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .subtitle {
@@ -220,23 +227,22 @@
       color: #b0bec5;
     }
 
-    .info-text strong {
-      color: #ffe082;
-    }
+    .info-text strong { color: #ffe082; }
 
     /* DETAILS CARD */
     .details-card {
       margin-top: 20px;
       padding: 16px 16px 14px;
       border-radius: 18px;
-      background: radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(0,0,0,0.7), transparent 55%),
-                  rgba(8, 20, 40, 0.95);
-      border: 1px solid rgba(255,255,255,0.18);
+      background:
+        radial-gradient(circle at top left, rgba(71,181,255,0.35), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(0,150,136,0.4), transparent 65%),
+        linear-gradient(135deg, #061426, #04121c);
+      border: 1px solid rgba(176,190,197,0.6);
       box-shadow:
-        0 16px 44px rgba(0,0,0,0.85),
-        0 0 0 1px rgba(255,255,255,0.06);
-      backdrop-filter: blur(18px);
+        0 16px 44px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(0,0,0,0.6);
+      backdrop-filter: blur(20px);
       position: relative;
       overflow: hidden;
     }
@@ -247,9 +253,9 @@
       inset: -1px;
       border-radius: inherit;
       background: conic-gradient(from 200deg, #00e676, #00e5ff, #b2ff59, #00e676);
-      opacity: 0.25;
+      opacity: 0.18;
       mix-blend-mode: screen;
-      filter: blur(18px);
+      filter: blur(20px);
       pointer-events: none;
     }
 
@@ -281,16 +287,14 @@
       display: grid;
       gap: 6px 16px;
       font-size: 13px;
-      color: #cfd8dc;
+      color: #e0f2f1;
     }
 
     @media (min-width: 720px) {
       .details-grid {
         grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
       }
-      .details-grid .full {
-        grid-column: 1 / -1;
-      }
+      .details-grid .full { grid-column: 1 / -1; }
     }
 
     .details-row {
@@ -303,7 +307,7 @@
       min-width: 100px;
       max-width: 130px;
       font-weight: 700;
-      color: #ffe082;
+      color: #ffd54f;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -312,6 +316,7 @@
     .details-value {
       flex: 1;
       font-size: 13px;
+      color: #eceff1;
     }
 
     .details-value-strong {
@@ -319,18 +324,18 @@
       font-weight: 600;
     }
 
-    /* WILDCARD CARD – list vertikal, scroll horizontal */
+    /* WILDCARD CARD */
     .wildcard-card {
       margin-top: 14px;
       padding: 16px 16px 14px;
       border-radius: 18px;
-      background: radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 55%),
-                  radial-gradient(circle at bottom left, rgba(0,0,0,0.7), transparent 55%),
-                  rgba(8, 20, 40, 0.96);
-      border: 1px solid rgba(255,255,255,0.18);
+      background:
+        radial-gradient(circle at top right, rgba(129,212,250,0.25), transparent 60%),
+        linear-gradient(135deg, #050d1b, #020713);
+      border: 1px solid rgba(144,164,174,0.8);
       box-shadow:
-        0 16px 44px rgba(0,0,0,0.85),
-        0 0 0 1px rgba(255,255,255,0.06);
+        0 16px 44px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(0,0,0,0.8);
       backdrop-filter: blur(18px);
       position: relative;
       overflow: hidden;
@@ -384,13 +389,14 @@
       position: relative;
       padding: 16px 16px 14px;
       border-radius: 16px;
-      background: radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 50%),
-                  radial-gradient(circle at bottom right, rgba(0,0,0,0.5), transparent 50%),
-                  rgba(8, 20, 40, 0.9);
-      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.5), transparent 50%),
+        linear-gradient(145deg, #050d1b, #020713);
+      border: 1px solid rgba(120,144,156,0.8);
       box-shadow:
-        0 14px 40px rgba(0,0,0,0.8),
-        0 0 0 1px rgba(255,255,255,0.05);
+        0 14px 40px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(0,0,0,0.7);
       overflow: hidden;
       backdrop-filter: blur(16px);
       transform-origin: center;
@@ -409,14 +415,8 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(22px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(22px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .config-header {
@@ -488,16 +488,16 @@
       box-shadow: 0 0 8px rgba(0,230,118,0.9);
     }
 
-    .ping-value.ping-error {
-      color: #ff8a80;
-    }
+    .ping-value.ping-error { color: #ff8a80; }
 
     .config-body {
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: 10px;
       font-size: 12px;
       color: #b0bec5;
+      padding-bottom: 38px; /* ruang buat tombol copy di pojok kanan bawah */
     }
 
     .config-body code {
@@ -513,16 +513,18 @@
     }
 
     .copy-row {
+      position: absolute;
+      right: 10px;
+      bottom: 6px;
       display: flex;
       align-items: center;
       gap: 8px;
-      justify-content: flex-end;
     }
 
-    /* Tombol copy lebih soft */
+    /* Tombol copy lebih soft & elegan */
     .copy-btn {
       font-size: 12px;
-      padding: 8px 14px;
+      padding: 7px 14px;
       border-radius: 999px;
       border: none;
       cursor: pointer;
@@ -582,9 +584,7 @@
       color: #90a4ae;
     }
 
-    footer span {
-      color: #ff80ab;
-    }
+    footer span { color: #ff80ab; }
 
     @media (min-width: 720px) {
       .cards {
@@ -602,6 +602,7 @@
 <body>
   <div class="bg-animated"></div>
   <div class="bg-gradient-overlay"></div>
+  <div class="star-layer"></div>
   <div class="snow-layer"></div>
 
   <div class="wrapper">
@@ -612,7 +613,7 @@
       </div>
       <h1>Abdul Store Official</h1>
       <p class="subtitle">
-        <span>Collaboration by Technic</span> · Fast · Secure · High Quality<br />
+        <span>Collaboration by Technic</span> · Fast · Secure<br />
         <span class="design-credit">Design UI: Technic Developer</span>
       </p>
       <div class="glow-line"></div>
