@@ -1,563 +1,100 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lightning Neon UI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegram | @dectechnical</title>
 
-  <style>
-    :root{
-      --bg0:#060811;
-      --bg1:#04030a;
-      --neon1:#00e5ff;
-      --neon2:#ff2bd6;
-      --neon3:#b5ff4a;
-      --text:#eaf6ff;
-      --muted:#9bb3c7;
-      --glass: rgba(255,255,255,.07);
-      --glass2: rgba(0,0,0,.35);
-      --border: rgba(255,255,255,.16);
-      --shadow: 0 20px 70px rgba(0,0,0,.55);
-    }
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html,body{ height:100%; background: radial-gradient(1200px 600px at 70% -10%, #101a45 0%, transparent 60%),
-                                   radial-gradient(900px 550px at 20% 110%, #2a0f33 0%, transparent 60%),
-                                   linear-gradient(180deg, var(--bg0), var(--bg1));
-              color:var(--text);
-              font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-              overflow:hidden; }
+<!-- Icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    /* --- Animated background layers --- */
-    .stage{
-      position:relative;
-      width:100%;
-      height:100%;
-      display:grid;
-      place-items:center;
-      isolation:isolate;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-    /* Moving neon grid */
-    .grid{
-      position:absolute; inset:-40%;
-      background:
-        linear-gradient(rgba(0,229,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,43,214,.05) 1px, transparent 1px);
-      background-size: 70px 70px, 70px 70px;
-      transform: rotateX(70deg) rotateZ(25deg);
-      filter: blur(.2px);
-      animation: gridMove 9s linear infinite;
-      opacity:.55;
-      z-index:-5;
-    }
-    @keyframes gridMove{
-      0%{ background-position: 0 0, 0 0; }
-      100%{ background-position: 0 420px, 420px 0; }
-    }
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
 
-    /* Aurora blobs */
-    .aurora{
-      position:absolute; inset:-30%;
-      background:
-        radial-gradient(closest-side at 30% 30%, rgba(0,229,255,.25), transparent 60%),
-        radial-gradient(closest-side at 70% 50%, rgba(255,43,214,.22), transparent 60%),
-        radial-gradient(closest-side at 45% 80%, rgba(181,255,74,.18), transparent 60%);
-      filter: blur(40px) saturate(140%);
-      animation: auroraDrift 12s ease-in-out infinite alternate;
-      z-index:-6;
-      opacity:.9;
-    }
-    @keyframes auroraDrift{
-      0%{ transform: translate(-2%, -1%) scale(1.02) rotate(-3deg); }
-      100%{ transform: translate(2%, 1%) scale(1.06) rotate(3deg); }
-    }
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    animation: fadeIn 1s ease;
+}
 
-    /* Vignette + noise */
-    .vignette{
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 500px at 50% 40%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.72) 100%),
-        repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0, rgba(255,255,255,.02) 1px, transparent 2px, transparent 4px);
-      mix-blend-mode: overlay;
-      pointer-events:none;
-      z-index:-1;
-      opacity:.9;
-    }
+.card i {
+    font-size: 60px;
+    color: #2AABEE;
+    margin-bottom: 15px;
+}
 
-    /* --- Lightning bolts --- */
-    .bolt{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      z-index:-2;
-      opacity:0;
-      filter:
-        drop-shadow(0 0 10px rgba(0,229,255,.75))
-        drop-shadow(0 0 22px rgba(255,43,214,.45))
-        drop-shadow(0 0 40px rgba(181,255,74,.22));
-      animation: boltFlash 6.5s infinite;
-    }
-    .bolt:nth-child(2){ animation-delay: 1.2s; transform: scaleX(-1); }
-    .bolt:nth-child(3){ animation-delay: 2.4s; transform: rotate(10deg) scale(1.05); }
-    .bolt:nth-child(4){ animation-delay: 3.9s; transform: rotate(-8deg) scale(1.02); }
+.card h1 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
 
-    @keyframes boltFlash{
-      0%, 84%, 100% { opacity:0; }
-      85% { opacity:.0; }
-      86% { opacity:1; }
-      87% { opacity:.25; }
-      88% { opacity:.95; }
-      89% { opacity:.15; }
-      90% { opacity:.7; }
-      92% { opacity:0; }
-    }
+.card p {
+    color: #ddd;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
 
-    /* --- Main card --- */
-    .card{
-      width:min(920px, 92vw);
-      padding:28px;
-      border-radius:22px;
-      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.36));
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      position:relative;
-      overflow:hidden;
-    }
+.card a {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #2AABEE;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
 
-    /* Shiny edge + animated highlight */
-    .card::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        linear-gradient(120deg,
-          transparent 0%,
-          rgba(0,229,255,.28) 18%,
-          rgba(255,43,214,.22) 38%,
-          rgba(181,255,74,.16) 60%,
-          transparent 80%);
-      opacity:.55;
-      transform: translateX(-40%);
-      animation: shine 4.6s ease-in-out infinite;
-      filter: blur(6px);
-      pointer-events:none;
-    }
-    @keyframes shine{
-      0%{ transform: translateX(-50%) rotate(0deg); opacity:.35; }
-      45%{ opacity:.65; }
-      100%{ transform: translateX(50%) rotate(0deg); opacity:.35; }
-    }
+.card a:hover {
+    background: #1c8acb;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(42,171,238,0.6);
+}
 
-    /* Electric border trace */
-    .trace{
-      position:absolute; inset:0;
-      border-radius:22px;
-      padding:1px;
-      background: conic-gradient(from 180deg,
-        rgba(0,229,255,.0),
-        rgba(0,229,255,.8),
-        rgba(255,43,214,.8),
-        rgba(181,255,74,.65),
-        rgba(0,229,255,.0));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      opacity:.65;
-      animation: spin 5.5s linear infinite;
-      pointer-events:none;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    @keyframes spin { to { transform: rotate(1turn); } }
-
-    .top{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      position:relative;
-      z-index:1;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-
-    .brand{
-      display:flex;
-      gap:14px;
-      align-items:center;
-      min-width: 260px;
-    }
-
-    .logo{
-      width:52px; height:52px;
-      border-radius:16px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), rgba(255,255,255,.06) 45%, rgba(0,0,0,.45) 100%),
-                  conic-gradient(from 120deg, rgba(0,229,255,.8), rgba(255,43,214,.75), rgba(181,255,74,.65), rgba(0,229,255,.8));
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.12),
-        0 0 18px rgba(0,229,255,.35),
-        0 0 26px rgba(255,43,214,.25);
-      position:relative;
-      overflow:hidden;
-    }
-    .logo::after{
-      content:"";
-      position:absolute; inset:-40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.42), transparent 45%);
-      transform: rotate(25deg);
-      animation: logoGlow 2.2s ease-in-out infinite alternate;
-      filter: blur(2px);
-      opacity:.8;
-    }
-    @keyframes logoGlow{
-      from{ transform: translate(-4%, -2%) rotate(25deg); opacity:.55; }
-      to{ transform: translate(6%, 4%) rotate(25deg); opacity:.95; }
-    }
-
-    h1{
-      font-size: clamp(20px, 3vw, 34px);
-      line-height: 1.1;
-      letter-spacing:.4px;
-      text-shadow:
-        0 0 10px rgba(0,229,255,.28),
-        0 0 18px rgba(255,43,214,.18);
-    }
-    .subtitle{
-      margin-top:6px;
-      color:var(--muted);
-      font-size: 13.5px;
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .btn{
-      border:1px solid rgba(255,255,255,.16);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.35));
-      color:var(--text);
-      padding: 11px 14px;
-      border-radius: 14px;
-      cursor:pointer;
-      font-weight:650;
-      letter-spacing:.2px;
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,.25) inset,
-        0 14px 30px rgba(0,0,0,.35);
-      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .btn::before{
-      content:"";
-      position:absolute; inset:-60% -40%;
-      background: radial-gradient(circle at 30% 30%, rgba(0,229,255,.28), transparent 55%),
-                  radial-gradient(circle at 60% 60%, rgba(255,43,214,.22), transparent 55%);
-      filter: blur(10px);
-      opacity:.8;
-      transform: translateX(-18%);
-      transition: transform .3s ease;
-      pointer-events:none;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.05);
-      box-shadow:
-        0 0 16px rgba(0,229,255,.16),
-        0 0 22px rgba(255,43,214,.12),
-        0 18px 40px rgba(0,0,0,.45);
-    }
-    .btn:hover::before{ transform: translateX(12%); }
-
-    .btn.primary{
-      border:1px solid rgba(0,229,255,.35);
-      box-shadow:
-        0 0 18px rgba(0,229,255,.22),
-        0 0 28px rgba(255,43,214,.12),
-        0 18px 50px rgba(0,0,0,.45);
-    }
-
-    /* Content blocks */
-    .content{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:14px;
-      position:relative;
-      z-index:1;
-    }
-    @media (max-width: 860px){
-      .content{ grid-template-columns: 1fr; }
-    }
-
-    .panel{
-      border-radius:18px;
-      padding:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.32));
-      box-shadow: 0 12px 30px rgba(0,0,0,.25);
-      position:relative;
-      overflow:hidden;
-    }
-    .panel::after{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(700px 300px at 20% 20%, rgba(0,229,255,.18), transparent 55%),
-                  radial-gradient(700px 300px at 80% 70%, rgba(255,43,214,.14), transparent 55%);
-      opacity:.8;
-      pointer-events:none;
-      filter: blur(8px);
-    }
-
-    .panel h2{
-      font-size:14px;
-      letter-spacing:.25em;
-      text-transform:uppercase;
-      color: rgba(234,246,255,.88);
-      margin-bottom:10px;
-      position:relative;
-      z-index:1;
-    }
-    .row{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 0;
-      border-bottom:1px dashed rgba(255,255,255,.12);
-      position:relative;
-      z-index:1;
-      font-size:14px;
-    }
-    .row:last-child{ border-bottom:0; }
-    .k{ color: rgba(234,246,255,.75); }
-    .v{
-      color: rgba(234,246,255,.95);
-      font-weight:650;
-      text-shadow: 0 0 10px rgba(0,229,255,.12);
-      text-align:right;
-      word-break: break-word;
-    }
-
-    /* Energy ring */
-    .ring{
-      position:absolute;
-      width:520px; height:520px;
-      border-radius:50%;
-      left:50%; top:50%;
-      transform: translate(-50%,-50%);
-      background:
-        radial-gradient(circle at 50% 50%, transparent 55%, rgba(0,229,255,.35) 56%, transparent 60%),
-        radial-gradient(circle at 50% 50%, transparent 62%, rgba(255,43,214,.25) 63%, transparent 68%),
-        radial-gradient(circle at 50% 50%, transparent 70%, rgba(181,255,74,.14) 71%, transparent 78%);
-      filter: blur(.2px);
-      opacity:.55;
-      animation: ringPulse 3.4s ease-in-out infinite;
-      pointer-events:none;
-      z-index:-3;
-    }
-    @keyframes ringPulse{
-      0%{ transform: translate(-50%,-50%) scale(.98) rotate(0deg); opacity:.35; }
-      55%{ opacity:.75; }
-      100%{ transform: translate(-50%,-50%) scale(1.04) rotate(25deg); opacity:.35; }
-    }
-
-    /* Floating sparks */
-    .sparks{
-      position:absolute; inset:0;
-      pointer-events:none;
-      z-index:-4;
-      opacity:.75;
-    }
-    .spark{
-      position:absolute;
-      width:3px; height:3px;
-      border-radius:50%;
-      background: rgba(255,255,255,.9);
-      filter: drop-shadow(0 0 10px rgba(0,229,255,.7));
-      animation: floatUp 5.8s linear infinite;
-    }
-    @keyframes floatUp{
-      from{ transform: translateY(30px); opacity:0; }
-      10%{ opacity:.9; }
-      to{ transform: translateY(-520px); opacity:0; }
-    }
-
-    /* Mini hint footer */
-    .hint{
-      margin-top:12px;
-      color: rgba(234,246,255,.62);
-      font-size: 12.5px;
-      text-align:center;
-      text-shadow: 0 0 14px rgba(0,229,255,.10);
-      position:relative;
-      z-index:1;
-    }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .grid,.aurora,.bolt,.trace,.ring,.spark,.card::before,.logo::after{ animation:none !important; }
-    }
-  </style>
+}
+</style>
 </head>
-
 <body>
-  <div class="stage">
-    <div class="aurora"></div>
-    <div class="grid"></div>
 
-    <!-- Lightning SVG overlays -->
-    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M450 0 L520 120 L470 150 L560 260 L500 290 L610 420 L520 460 L640 600"
-            fill="none" stroke="rgba(245,255,255,.95)" stroke-width="6" stroke-linecap="round" />
-      <path d="M455 0 L520 120 L470 150 L560 260 L500 290 L610 420 L520 460 L640 600"
-            fill="none" stroke="rgba(0,229,255,.55)" stroke-width="12" stroke-linecap="round" opacity=".55"/>
-    </svg>
-    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M560 0 L520 120 L590 160 L520 260 L590 320 L500 420 L560 480 L470 600"
-            fill="none" stroke="rgba(245,255,255,.95)" stroke-width="6" stroke-linecap="round" />
-      <path d="M560 0 L520 120 L590 160 L520 260 L590 320 L500 420 L560 480 L470 600"
-            fill="none" stroke="rgba(255,43,214,.45)" stroke-width="12" stroke-linecap="round" opacity=".45"/>
-    </svg>
-    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M300 0 L360 110 L320 150 L380 240 L340 290 L420 420 L380 470 L460 600"
-            fill="none" stroke="rgba(245,255,255,.92)" stroke-width="5" stroke-linecap="round" />
-      <path d="M300 0 L360 110 L320 150 L380 240 L340 290 L420 420 L380 470 L460 600"
-            fill="none" stroke="rgba(181,255,74,.22)" stroke-width="11" stroke-linecap="round" opacity=".55"/>
-    </svg>
-    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M720 0 L680 120 L740 160 L690 260 L730 320 L650 420 L710 490 L630 600"
-            fill="none" stroke="rgba(245,255,255,.90)" stroke-width="5" stroke-linecap="round" />
-      <path d="M720 0 L680 120 L740 160 L690 260 L730 320 L650 420 L710 490 L630 600"
-            fill="none" stroke="rgba(0,229,255,.35)" stroke-width="11" stroke-linecap="round" opacity=".50"/>
-    </svg>
+<div class="card">
+    <i class="fab fa-telegram"></i>
+    <h1>@dectechnical</h1>
+    <p>Telegram Channel • Tech • Tools • Updates</p>
+    <a href="https://t.me/dectechnical" target="_blank">
+        Join Telegram
+    </a>
+</div>
 
-    <!-- Sparks -->
-    <div class="sparks" id="sparks"></div>
-
-    <!-- Main UI -->
-    <div class="ring"></div>
-
-    <section class="card">
-      <div class="trace"></div>
-
-      <div class="top">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            <h1>Lightning Neon Panel</h1>
-            <div class="subtitle">Glow • Shadow Lightning • Aurora • Grid • Sparks</div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn" onclick="flashNow()">⚡ Flash</button>
-          <button class="btn primary" onclick="togglePower()">🔋 Toggle Power</button>
-        </div>
-      </div>
-
-      <div class="content">
-        <div class="panel">
-          <h2>Status</h2>
-          <div class="row"><div class="k">Mode</div><div class="v" id="mode">NEON ACTIVE</div></div>
-          <div class="row"><div class="k">Field</div><div class="v" id="field">STABLE</div></div>
-          <div class="row"><div class="k">Output</div><div class="v" id="out">9.4 kV</div></div>
-          <div class="row"><div class="k">Shield</div><div class="v" id="shield">ON</div></div>
-        </div>
-
-        <div class="panel">
-          <h2>Controls</h2>
-          <div class="row"><div class="k">Aurora</div><div class="v">Drifting</div></div>
-          <div class="row"><div class="k">Grid</div><div class="v">Flowing</div></div>
-          <div class="row"><div class="k">Lightning</div><div class="v">Random Flash</div></div>
-          <div class="row"><div class="k">Sparks</div><div class="v">Rising</div></div>
-        </div>
-      </div>
-
-      <div class="hint">Klik ⚡ Flash buat “petir” langsung muncul. Toggle Power buat mati/nyala efek neon.</div>
-    </section>
-
-    <div class="vignette"></div>
-  </div>
-
-  <script>
-    // Create sparks (light particles)
-    const sparksWrap = document.getElementById("sparks");
-    const sparkCount = 36;
-
-    function rand(min, max){ return Math.random() * (max - min) + min; }
-
-    function makeSparks(){
-      sparksWrap.innerHTML = "";
-      for(let i=0; i<sparkCount; i++){
-        const s = document.createElement("div");
-        s.className = "spark";
-        s.style.left = rand(3, 97) + "%";
-        s.style.top  = rand(65, 105) + "%";
-        s.style.animationDelay = rand(0, 5.8) + "s";
-        s.style.animationDuration = rand(4.6, 7.2) + "s";
-        s.style.transform = `translateY(${rand(10, 50)}px)`;
-        sparksWrap.appendChild(s);
-      }
-    }
-    makeSparks();
-    window.addEventListener("resize", makeSparks);
-
-    // Manual lightning flash
-    function flashNow(){
-      const bolts = document.querySelectorAll(".bolt");
-      // force flash quickly by toggling animation
-      bolts.forEach((b, idx) => {
-        b.style.animation = "none";
-        // reflow
-        void b.offsetHeight;
-        b.style.animation = `boltFlash ${rand(1.2, 2.2)}s infinite`;
-        b.style.animationDelay = (idx * 0.12) + "s";
-      });
-
-      // quick UI jitter
-      const card = document.querySelector(".card");
-      card.animate([
-        { transform: "translateY(0px) scale(1)" },
-        { transform: "translateY(-2px) scale(1.002)" },
-        { transform: "translateY(0px) scale(1)" }
-      ], { duration: 260, easing: "cubic-bezier(.2,.9,.2,1)" });
-
-      // change status text a bit
-      document.getElementById("field").textContent = "SURGE";
-      document.getElementById("out").textContent = (rand(8.6, 12.8)).toFixed(1) + " kV";
-      setTimeout(()=> document.getElementById("field").textContent = "STABLE", 600);
-    }
-
-    // Toggle power mode (reduce effects)
-    let powerOn = true;
-    function togglePower(){
-      powerOn = !powerOn;
-      document.getElementById("mode").textContent = powerOn ? "NEON ACTIVE" : "POWER SAVE";
-      document.getElementById("shield").textContent = powerOn ? "ON" : "ECO";
-
-      const stage = document.querySelector(".stage");
-      stage.style.filter = powerOn ? "none" : "saturate(80%) brightness(0.9)";
-
-      // enable/disable heavy animations
-      const animated = document.querySelectorAll(".grid,.aurora,.trace,.ring,.spark,.bolt,.card::before");
-      // cannot select ::before in JS; we just tweak opacity/animations on real nodes:
-      document.querySelector(".grid").style.opacity = powerOn ? ".55" : ".15";
-      document.querySelector(".aurora").style.opacity = powerOn ? ".9" : ".25";
-      document.querySelector(".ring").style.opacity = powerOn ? ".55" : ".12";
-      document.querySelector(".trace").style.opacity = powerOn ? ".65" : ".18";
-      sparksWrap.style.opacity = powerOn ? ".75" : ".2";
-
-      document.querySelectorAll(".bolt").forEach(b=>{
-        b.style.opacity = powerOn ? "" : "0";
-      });
-    }
-
-    // Occasionally trigger extra flash randomly
-    setInterval(()=>{
-      if(!powerOn) return;
-      if(Math.random() < 0.22) flashNow();
-    }, 1800);
-  </script>
 </body>
 </html>
