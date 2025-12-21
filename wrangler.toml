@@ -1,4 +1,4 @@
-name = "idbiasa"
+name = "acamai"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "653321cf-2fa1-466b-a612-85a2db6fea0b"
+UUID = "c746b9b2-5ce0-47b7-b953-dd9909cb16e2"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"
